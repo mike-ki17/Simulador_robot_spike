@@ -17,7 +17,6 @@ Este proyecto ha sido desarrollado para hacer más eficiente la programación de
 - Este código incluye todas las instrucciones necesarias para que el robot interprete y ejecute la ruta creada en el software.
 
 ![Imagen de salida de instrucciones](./src/readme_images/Captura%20desde%202025-01-27%2011-16-02.png)
-- Instrucciones interpretadas por un programa interno del robot spike, previamente subido en su sistema
 
 ### 4. **Funciones Preconfiguradas**
 - El código exportado está diseñado para integrarse con funciones previamente cargadas en el robot SPIKE, optimizando la eficiencia del proceso.
