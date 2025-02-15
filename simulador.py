@@ -39,11 +39,12 @@ pygame.display.set_caption("Tablero Juego del robot ")
 image_rect = tablero.get_rect()
 image_rect.center = (screen_width // 2, screen_height // 2)
 
-robot_rect = robot.get_rect()
-robot_rect.topleft = (100, 100)
+robot_scale = pygame.transform.scale(robot, (70, 100))
+robot_rect = robot_scale.get_rect()
+robot_rect.topleft = (730, 320)
 
 btn_borrar_rect = btn_borrar.get_rect()
-btn_borrar_rect.topleft = (800, 0) 
+btn_borrar_rect.topleft = (800, 0)
 
 btn_avanzar_rect = btn_avanzar.get_rect()
 btn_avanzar_rect.topleft = (800, 70)
@@ -153,10 +154,21 @@ while running:
         if button_clicked:
             button_clicked = False
 
+    if eventos['teclas']['arriba']:
+        print('Yeah arriba')
+    
+    if eventos['teclas']['abajo']:
+        print('abajo')
+    
+    if eventos['teclas']['izquierda']:
+        print('izquierda')
+    if eventos['teclas']['derecha']:
+        print('derecha')
 
     # Dibujar la imagen en la pantalla
     screen.fill((0, 0, 0))  # Color de fondo (negro)
     screen.blit(tablero, image_rect)  # Dibujar la imagen
+    screen.blit(robot_scale, robot_rect.topleft)
     screen.blit(btn_borrar, btn_borrar_rect.topleft)  # Dibujar el 
     screen.blit(btn_avanzar, btn_avanzar_rect.topleft)
     screen.blit(btn_retroceder, btn_retroceder_rect.topleft)
