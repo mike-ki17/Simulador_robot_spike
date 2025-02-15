@@ -113,6 +113,11 @@ angulo = 0
 
 velocidad = 1
 
+# Variables para detectar cambios de tecla
+ultima_tecla = None  # Última tecla presionada
+ultima_posicion = robot_rect.topleft  # Última posición registrada
+
+
 # Loop principal
 running = True
 while running:
@@ -163,6 +168,7 @@ while running:
     # Mover robot si una tecla está presionada
     if keys[pygame.K_UP]:
         robot_rect.y -= velocidad
+
     if keys[pygame.K_DOWN]:
         robot_rect.y += velocidad
     if keys[pygame.K_LEFT]:
@@ -175,6 +181,44 @@ while running:
        
     if eventos['teclas']['e']:
         angulo = (angulo + 45) % 360
+
+
+
+
+    # posicion_actual = robot_rect.topleft
+
+    # # Detectar si se cambia de tecla
+    # if keys[pygame.K_UP]:
+    #     if ultima_tecla != "arriba":
+    #         print(f"Última coordenada antes de cambiar de tecla: {ultima_posicion}")
+    #         ultima_posicion = posicion_actual  # Guardar última posición
+    #     robot_rect.y -= velocidad
+    #     ultima_tecla = "arriba"
+
+    # elif keys[pygame.K_DOWN]:
+    #     if ultima_tecla != "abajo":
+    #         print(f"Última coordenada antes de cambiar de tecla: {ultima_posicion}")
+    #         ultima_posicion = posicion_actual
+    #     robot_rect.y += velocidad
+    #     ultima_tecla = "abajo"
+
+    # elif keys[pygame.K_LEFT]:
+    #     if ultima_tecla != "izquierda":
+    #         print(f"Última coordenada antes de cambiar de tecla: {ultima_posicion}")
+    #         ultima_posicion = posicion_actual
+    #     robot_rect.x -= velocidad
+    #     ultima_tecla = "izquierda"
+
+    # elif keys[pygame.K_RIGHT]:
+    #     if ultima_tecla != "derecha":
+    #         print(f"Última coordenada antes de cambiar de tecla: {ultima_posicion}")
+    #         ultima_posicion = posicion_actual
+    #     robot_rect.x += velocidad
+    #     ultima_tecla = "derecha"
+
+    # else:
+    #     ultima_tecla = None  # No hay tecla presionada
+
 
     robot_rotado = pygame.transform.rotate(robot_scale, angulo)
     robot_rotado_rect = robot_rotado.get_rect(center=robot_rect.center)
