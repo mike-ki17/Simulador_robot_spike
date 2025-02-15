@@ -13,7 +13,9 @@ def manejar_eventos():
             "arriba": False,
             "abajo": False,
             "izquierda": False,
-            "derecha": False
+            "derecha": False,
+            "r": False,
+            "e": False
         }
     }
     
@@ -25,15 +27,21 @@ def manejar_eventos():
             eventos["click"] = [True, event.pos]  # Detectar clic en el botón
         elif event.type == pygame.MOUSEBUTTONUP:
             eventos["manejador_click"] = True
-        elif event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
+            estado = event.type == pygame.KEYDOWN  # True si se presiona, False si se suelta
             if event.key == pygame.K_UP:
-                eventos["teclas"]["arriba"] = True
+                eventos["teclas"]["arriba"] = estado
             elif event.key == pygame.K_DOWN:
-                eventos["teclas"]["abajo"] = True
+                eventos["teclas"]["abajo"] = estado
             elif event.key == pygame.K_LEFT:
-                eventos["teclas"]["izquierda"] = True
+                eventos["teclas"]["izquierda"] = estado
             elif event.key == pygame.K_RIGHT:
-                eventos["teclas"]["derecha"] = True
+                eventos["teclas"]["derecha"] = estado
+            elif event.key == pygame.K_r:
+                eventos['teclas']['r'] = estado
+            elif event.key == pygame.K_e:
+                eventos['teclas']['e'] = estado
+
 
     
     return eventos

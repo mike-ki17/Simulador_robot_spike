@@ -108,6 +108,10 @@ show_secundary_window = False
 
 recorrido_export = ''
 
+# Angulo del robot
+angulo = 0
+
+velocidad = 1
 
 # Loop principal
 running = True
@@ -154,21 +158,31 @@ while running:
         if button_clicked:
             button_clicked = False
 
-    if eventos['teclas']['arriba']:
-        print('Yeah arriba')
+    keys = pygame.key.get_pressed()
+
+    # Mover robot si una tecla está presionada
+    if keys[pygame.K_UP]:
+        robot_rect.y -= velocidad
+    if keys[pygame.K_DOWN]:
+        robot_rect.y += velocidad
+    if keys[pygame.K_LEFT]:
+        robot_rect.x -= velocidad
+    if keys[pygame.K_RIGHT]:
+        robot_rect.x += velocidad
     
-    if eventos['teclas']['abajo']:
-        print('abajo')
-    
-    if eventos['teclas']['izquierda']:
-        print('izquierda')
-    if eventos['teclas']['derecha']:
-        print('derecha')
+    if eventos['teclas']['r']:
+        angulo = (angulo - 45) % 360
+       
+    if eventos['teclas']['e']:
+        angulo = (angulo + 45) % 360
+
+    robot_rotado = pygame.transform.rotate(robot_scale, angulo)
+    robot_rotado_rect = robot_rotado.get_rect(center=robot_rect.center)
 
     # Dibujar la imagen en la pantalla
     screen.fill((0, 0, 0))  # Color de fondo (negro)
     screen.blit(tablero, image_rect)  # Dibujar la imagen
-    screen.blit(robot_scale, robot_rect.topleft)
+    screen.blit(robot_rotado, robot_rotado_rect.topleft)
     screen.blit(btn_borrar, btn_borrar_rect.topleft)  # Dibujar el 
     screen.blit(btn_avanzar, btn_avanzar_rect.topleft)
     screen.blit(btn_retroceder, btn_retroceder_rect.topleft)
